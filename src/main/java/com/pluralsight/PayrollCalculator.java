@@ -8,7 +8,10 @@ public class PayrollCalculator {
     public static Scanner myScanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        createEmployees();
+        String inputFile = askUserStr("Enter the name of the employee file to process: ");
+        String outputFile = askUserStr("Enter the name of payroll file to create: ");
+
+        createEmployees(inputFile, outputFile);
 
     }
     public static void displayEmployee(Employee employee) {
@@ -20,11 +23,11 @@ public class PayrollCalculator {
                 """, employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
     }
 
-    public static void createEmployees() {
+    public static void createEmployees(String inputFile, String outputFile) {
 
         try (
-                BufferedReader bufferedReader = new BufferedReader(new FileReader("employees.csv"));
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("payroll.csv"))
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile))
         ) {
 
             String input = bufferedReader.readLine();
