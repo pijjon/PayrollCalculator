@@ -1,8 +1,11 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class PayrollCalculator {
+    public static Scanner myScanner = new Scanner(System.in);
     public static void main(String[] args) {
 
         createEmployees();
@@ -43,5 +46,18 @@ public class PayrollCalculator {
             System.out.println("IO Error?");
             e.printStackTrace();
         }
+    }
+    public static String askUserStr(String question) {
+        String output = null;
+        try {
+            System.out.println(question);
+            output = myScanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input!");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        }
+        return output;
     }
 }
